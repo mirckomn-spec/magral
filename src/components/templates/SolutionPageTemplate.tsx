@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { Button } from "@/components/ui/Button";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { ProductCard } from "@/components/cards/ProductCard";
 import { ContentCard } from "@/components/cards/ContentCard";
 import { getProduct } from "@/lib/data/products";
@@ -94,9 +94,7 @@ export function SolutionPageTemplate({ solution }: { solution: Solution }) {
               Envie o contexto da aplicação e a equipe técnica retorna com encaminhamento.
             </p>
             <div className="mt-5">
-              <Button href="/contato" className="w-full">
-                Falar com especialista
-              </Button>
+              <ContactForm submitLabel="Falar com especialista" />
             </div>
             <Link href="/pecas" className="mt-4 block text-sm text-accent">
               Precisa de peça ou reposição? →

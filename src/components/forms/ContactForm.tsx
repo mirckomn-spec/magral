@@ -2,7 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/Button";
-import { composeMailto } from "@/lib/mail";
+import { FileAttachField } from "@/components/forms/FileAttachField";
+import { deliverContact } from "@/lib/send-contact";
 
 type Errors = Record<string, string>;
 
@@ -15,8 +16,10 @@ export function ContactForm({
 }) {
   const [errors, setErrors] = useState<Errors>({});
   const [sent, setSent] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const [sending, setSending] = useState(false);
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
     const next: Errors = {};
@@ -36,14 +39,17 @@ export function ContactForm({
     setErrors(next);
     if (Object.keys(next).length > 0) return;
 
-    window.location.href = composeMailto("Contato pelo site MAGRAL", [
+    setSending(true);
+    const result = await deliverContact("Contato pelo site MAGRAL", [
       `Nome: ${name}`,
       `Empresa: ${company}`,
       `E-mail: ${email}`,
       `Telefone: ${phone}`,
       `Necessidade: ${need}`,
       help ? `Como podemos ajudar: ${help}` : "",
-    ]);
+    ], files);
+    setSending(false);
+    if (result === "cancelled") return;
     setSent(true);
   }
 
@@ -52,7 +58,8 @@ export function ContactForm({
       <div className="rounded-xl border border-line bg-white p-8 text-center shadow-card">
         <h3 className="text-xl font-semibold text-navy">Mensagem preparada</h3>
         <p className="mt-3 text-sm leading-6 text-slate">
-          Seu aplicativo de e-mail foi aberto com os dados preenchidos. Envie a mensagem para concluir o contato com a equipe técnica.
+          Seu aplicativo de e-mail ou compartilhamento foi aberto com os dados preenchidos
+          {files.length > 0 ? " e a foto anexada" : ""}. Envie a mensagem para concluir o contato com a equipe técnica.
         </p>
       </div>
     );
@@ -65,15 +72,11 @@ export function ContactForm({
       <Field label="E-mail" name="email" type="email" error={errors.email} />
       <Field label="WhatsApp / Telefone" name="phone" error={errors.phone} />
       <Field label="Qual é o problema ou necessidade?" name="need" textarea error={errors.need} />
-      {extraFields ? (
-        <>
-          <Field label="Como podemos ajudar?" name="help" textarea />
-          <p className="text-sm leading-6 text-slate">
-            Se precisar enviar desenho, foto ou especificação, anexe o arquivo no e-mail que será aberto após enviar o formulário.
-          </p>
-        </>
-      ) : null}
-      <Button type="submit">{submitLabel}</Button>
+      {extraFields ? <Field label="Como podemos ajudar?" name="help" textarea /> : null}
+      <FileAttachField files={files} onChange={setFiles} />
+      <Button type="submit" disabled={sending}>
+        {sending ? "Preparando envio..." : submitLabel}
+      </Button>
     </form>
   );
 }

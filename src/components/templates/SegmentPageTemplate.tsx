@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
-import { Button } from "@/components/ui/Button";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { ProductCard } from "@/components/cards/ProductCard";
 import { ContentCard } from "@/components/cards/ContentCard";
 import { getProduct } from "@/lib/data/products";
@@ -85,8 +85,14 @@ export function SegmentPageTemplate({ segment }: { segment: Segment }) {
             ) : null,
           )}
         </div>
-        <div className="mt-12">
-          <Button href="/contato">Falar com especialista do setor</Button>
+        <div className="mt-12 rounded-2xl border border-line bg-[#f6f8fb] p-6 shadow-card md:p-8">
+          <h2 className="text-2xl font-semibold text-navy">Falar com especialista do setor</h2>
+          <p className="mt-2 text-sm leading-6 text-slate">
+            Envie o contexto da aplicação e, se quiser, anexe uma foto do equipamento.
+          </p>
+          <div className="mt-6">
+            <ContactForm submitLabel="Falar com especialista do setor" />
+          </div>
         </div>
       </div>
     </article>

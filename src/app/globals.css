@@ -67,3 +67,23 @@ body {
 .animate-fade-up {
   animation: fade-up 0.35s ease both;
 }
+
+.file-gallery-input {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  width: 250%;
+  height: 250%;
+  left: -75%;
+  top: -75%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 64px;
+  touch-action: manipulation;
+}
+
+.file-gallery-input::-webkit-file-upload-button {
+  cursor: pointer;
+}
