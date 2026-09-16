@@ -32,7 +32,7 @@ export default function ContactPage() {
           <ul className="mt-8 space-y-3 text-sm text-slate">
             <li>
               WhatsApp:{" "}
-              <a href={site.whatsappUrl} target="_blank" rel="noreferrer" className="text-navy hover:text-accent">
+              <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer" className="text-navy hover:text-accent">
                 {site.phone}
               </a>
             </li>
@@ -70,7 +70,7 @@ export default function ContactPage() {
                 <a
                   href={location.mapUrl}
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="mt-4 inline-flex text-sm font-semibold text-accent hover:text-accent-dark"
                 >
                   Abrir no Google Maps

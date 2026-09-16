@@ -1,6 +1,6 @@
 "use client";
 
-export default function GlobalError({ reset }: { reset: () => void }) {
+export default function GlobalError({ reset }: { reset: () => void; error: Error }) {
   return (
     <html lang="pt-BR">
       <body className="bg-[#f6f8fb] font-sans antialiased">

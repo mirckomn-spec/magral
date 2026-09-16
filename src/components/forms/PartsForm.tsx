@@ -58,10 +58,9 @@ export function PartsForm() {
         Descreva sua necessidade
         <textarea name="need" rows={4} className="mt-2 w-full rounded-md border border-line px-3 py-2.5 text-sm" />
       </label>
-      <label className="text-sm font-medium text-navy">
-        Upload de arquivo / documento
-        <input type="file" name="file" className="mt-2 block w-full text-sm text-slate" />
-      </label>
+      <p className="text-sm leading-6 text-slate">
+        Se tiver catálogo, foto ou desenho da peça, anexe o arquivo no e-mail que será aberto após enviar.
+      </p>
       {error ? <p className="text-sm text-red-600">{error}</p> : null}
       <Button type="submit">Enviar para equipe técnica</Button>
     </form>

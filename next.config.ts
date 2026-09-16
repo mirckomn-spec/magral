@@ -4,19 +4,13 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   productionBrowserSourceMaps: false,
   reactStrictMode: true,
+  compress: true,
   compiler: {
-    removeConsole: {
-      exclude: ["error"],
-    },
+    removeConsole: process.env.NODE_ENV === "production",
   },
   images: {
+    formats: ["image/avif", "image/webp"],
     remotePatterns: [{ protocol: "https", hostname: "images.unsplash.com" }],
-  },
-  webpack: (config, { dev }) => {
-    if (!dev) {
-      config.devtool = false;
-    }
-    return config;
   },
   async headers() {
     return [

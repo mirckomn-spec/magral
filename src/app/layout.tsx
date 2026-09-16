@@ -17,6 +17,7 @@ export const metadata: Metadata = {
   },
   description:
     "Soluções de engenharia industrial para controlar movimento, pressão e fluidos. Produtos, manutenção, peças e suporte técnico.",
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -8,7 +8,7 @@ import { NewsletterForm } from "./NewsletterForm";
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-white">
+    <footer id="site-footer" className="relative z-20 mt-auto w-full shrink-0 bg-navy text-white">
       <div className="container-wide grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-5">
         <div>
           <Link href="/" className="inline-flex">

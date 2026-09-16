@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 
-export default function ErrorPage({ reset }: { reset: () => void }) {
+export default function ErrorPage({ reset }: { reset: () => void; error: Error }) {
   return (
     <section className="container-site py-24 text-center">
       <h1 className="text-4xl font-semibold text-navy">Não foi possível carregar esta página</h1>

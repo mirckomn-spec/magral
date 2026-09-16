@@ -68,10 +68,9 @@ export function ContactForm({
       {extraFields ? (
         <>
           <Field label="Como podemos ajudar?" name="help" textarea />
-          <label className="text-sm font-medium text-navy">
-            Enviar arquivo ou documento
-            <input type="file" name="file" className="mt-2 block w-full text-sm text-slate" />
-          </label>
+          <p className="text-sm leading-6 text-slate">
+            Se precisar enviar desenho, foto ou especificação, anexe o arquivo no e-mail que será aberto após enviar o formulário.
+          </p>
         </>
       ) : null}
       <Button type="submit">{submitLabel}</Button>

@@ -15,11 +15,16 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: clip;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: auto;
 }
 
 body {
   min-height: 100dvh;
+  height: auto;
+  overflow-x: hidden;
+  overflow-y: visible;
   background: #f6f8fb;
   color: #1c2430;
   -webkit-font-smoothing: antialiased;

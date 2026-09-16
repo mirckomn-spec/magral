@@ -1,4 +1,4 @@
-import { site } from "./site";
+import { site } from "./data/site";
 
 export function composeMailto(subject: string, lines: string[]) {
   const body = encodeURIComponent(lines.filter(Boolean).join("\n"));
